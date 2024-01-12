@@ -1,9 +1,11 @@
 import React from "react";
 import { createCardsData, currencyFormat } from "../utils/utils";
+import { useAppSelector } from "../hooks";
+import { selectUser } from "../core/core.selectors";
 
 // data
 import { cards } from "../datas/constants";
-import { Customer, Orders } from "../core/core.models";
+import { Customer, Orders, UserAuth } from "../core/core.models";
 
 type cardsProps = {
   orders: Orders[];
@@ -11,10 +13,11 @@ type cardsProps = {
 };
 
 const Cards = ({ orders, customer }: cardsProps) => {
+  const user = useAppSelector(selectUser);
   return (
     <div className=" justify-start w-full items-start flex-wrap xl:flex-nowrap gap-4 inline-flex">
       {cards.map(({ text, icon, iconColor }, index) => {
-        const value = createCardsData(orders, customer, text);
+        const value = createCardsData(orders, customer, text, user as UserAuth);
 
         return (
           <div

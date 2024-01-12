@@ -14,7 +14,6 @@ import {
 // ui
 import Cards from "../components/Cards";
 import FeedbackBar from "../components/FedbackBar";
-//import Bar from "./Bar";
 import PieComponent from "../components/charts/pieChart";
 
 // data

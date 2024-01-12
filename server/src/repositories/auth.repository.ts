@@ -1,7 +1,6 @@
 import connection from "../db";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
-import { jwtSecret } from "../config/constants";
 import User from "../models/auth.model";
 
 interface IUser {
@@ -23,6 +22,7 @@ class AuthRepository implements IAuthRepository {
   ): void {
     try {
       const query = "SELECT * FROM users WHERE email = ?";
+      const jwtSecret = process.env.JWTSECRET;
 
       // Execute the query with the provided username and password
       connection.query(query, [credentials.username], async (error, rows) => {

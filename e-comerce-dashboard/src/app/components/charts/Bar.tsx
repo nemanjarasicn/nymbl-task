@@ -10,16 +10,18 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import { useAppSelector } from "../../hooks";
+import { selectOrdersAll, selectUser } from "../../core/core.selectors";
+import { createDataBar } from "../../utils/utils";
+import { UserAuth } from "@e-comerce/app/core/core.models";
 
 // data
 import { dataTm } from "../../datas/constants";
-import { useAppSelector } from "../../hooks";
-import { selectOrdersAll } from "../../core/core.selectors";
-import { createDataBar } from "../../utils/utils";
 
 const BarChartComponent = () => {
   const orders = useAppSelector(selectOrdersAll);
-  const dataBar = createDataBar(dataTm, orders);
+  const user = useAppSelector(selectUser);
+  const dataBar = createDataBar(dataTm, orders, user as UserAuth);
 
   return (
     <div className=" w-full">

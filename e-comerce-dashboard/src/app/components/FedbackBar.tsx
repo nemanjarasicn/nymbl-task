@@ -1,15 +1,27 @@
 import React from "react";
 import { createFeedbackData } from "../utils/utils";
+import { useAppSelector } from "../hooks";
+import { selectUser } from "../core/core.selectors";
+import { CustomerFeedback, UserAuth } from "../core/core.models";
 
 // data
 import { feedbackData } from "../datas/constants";
 
-const FeedbackBar = ({ customerFeedback }: any) => {
+const FeedbackBar = ({
+  customerFeedback,
+}: {
+  customerFeedback: CustomerFeedback[];
+}) => {
+  const user = useAppSelector(selectUser);
   return (
     <div className="justify-start w-full items-start flex-wrap xl:flex-nowrap gap-4 inline-flex">
       {feedbackData.map(
         ({ name, text, icon, iconColor, borderColor }, index) => {
-          const feedBackDataValue = createFeedbackData(customerFeedback, name);
+          const feedBackDataValue = createFeedbackData(
+            customerFeedback,
+            name,
+            user as UserAuth
+          );
           return (
             <div
               key={index}

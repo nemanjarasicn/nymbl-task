@@ -1,15 +1,20 @@
 import React, { useEffect } from "react";
 import { getProductsAll } from "../core/core.actions";
+import { useAppDispatch, useAppSelector } from "../hooks";
+import { selectUser } from "../core/core.selectors";
 
 // ui
 import CustomTable from "../components/table/CustomTable";
-import { useAppDispatch } from "../hooks";
+import { UserAuth } from "../core/core.models";
 
 const Inventory = () => {
   const dispach = useAppDispatch();
+  const user = useAppSelector(selectUser);
 
   useEffect(() => {
-    dispach(getProductsAll());
+    if (user && user.user) {
+      dispach(getProductsAll({ userId: user?.user.id }));
+    }
   }, []);
 
   return (
@@ -18,7 +23,7 @@ const Inventory = () => {
         <div className=" text-zinc-900 text-xl font-bold pb-5 flex">
           Inventory levels
         </div>
-        <CustomTable />
+        <CustomTable user={user as UserAuth} />
       </div>
     </div>
   );

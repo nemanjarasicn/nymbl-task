@@ -1,8 +1,8 @@
 import jwt from "jsonwebtoken";
-import { jwtSecret } from "../config/constants";
 
 const authenticateToken = (req, res, next) => {
   const tokenHeader = req.header("Authorization");
+  const jwtSecret = process.env.JWTSECRET;
 
   if (!tokenHeader) {
     return res.status(401).json({ message: "Unauthorized - Token missing" });

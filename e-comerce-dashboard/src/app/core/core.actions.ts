@@ -58,8 +58,16 @@ const getCustomerFeedbackAll = createAsyncThunk(
  */
 const getProductsAllPage = createAsyncThunk(
   "GET/ProductsAllPage",
-  async ({ page, pageSize }: { page: number; pageSize: number }) => {
-    return await AppService.getProductsAllPage(page, pageSize)
+  async ({
+    page,
+    pageSize,
+    userId,
+  }: {
+    page: number;
+    pageSize: number;
+    userId: number;
+  }) => {
+    return await AppService.getProductsAllPage(page, pageSize, userId)
       .then((res) => res.data)
       .catch(() => []);
   }
@@ -68,11 +76,14 @@ const getProductsAllPage = createAsyncThunk(
 /**
  * Get Async Products all
  */
-const getProductsAll = createAsyncThunk("GET/ProductsAll", async () => {
-  return await AppService.getProductsAllPage(0, 0)
-    .then((res) => res.data)
-    .catch(() => []);
-});
+const getProductsAll = createAsyncThunk(
+  "GET/ProductsAll",
+  async ({ userId }: { userId: number }) => {
+    return await AppService.getProductsAllPage(0, 0, userId)
+      .then((res) => res.data)
+      .catch(() => []);
+  }
+);
 
 export {
   getOrdersAll,

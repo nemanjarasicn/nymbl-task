@@ -5,15 +5,15 @@ import {
   selectProductsAllPage,
 } from "../../core/core.selectors";
 import { getProductsAllPage } from "../../core/core.actions";
+import { Products, UserAuth } from "../../core/core.models";
 
 // datas
 import { dataTableHeader } from "../../datas/constants";
 
 // ui
 import PaginationTable from "./PaginationTable";
-import { Products } from "../../core/core.models";
 
-const CustomTable = () => {
+const CustomTable = ({ user }: { user: UserAuth }) => {
   const dispach = useAppDispatch();
 
   const pageSize = 20;
@@ -22,7 +22,13 @@ const CustomTable = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
-    dispach(getProductsAllPage({ page: currentPage, pageSize: pageSize }));
+    dispach(
+      getProductsAllPage({
+        page: currentPage,
+        pageSize: pageSize,
+        userId: user.user.id,
+      })
+    );
   }, [dispach, currentPage, pageSize]);
 
   const handlePageChange = (page: number) => {
@@ -77,7 +83,7 @@ const CustomTable = () => {
               </tbody>
             </table>
             <PaginationTable
-              totalPages={totalPages}
+              totalPages={totalPages < 1 ? 1 : totalPages}
               currentPage={currentPage}
               onPageChange={handlePageChange}
             />

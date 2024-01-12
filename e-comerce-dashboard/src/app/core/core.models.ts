@@ -37,6 +37,7 @@ export interface Customer {
   email: string;
   country: string;
   registration_date: string;
+  user_id: number;
 }
 
 export interface CustomerFeedback {
@@ -44,6 +45,7 @@ export interface CustomerFeedback {
   customer_id: string;
   message: string;
   rating: number;
+  user_id: number;
 }
 
 export interface Products {
@@ -53,6 +55,7 @@ export interface Products {
   price: string;
   image: string;
   quantity: string;
+  user_id: number;
 }
 
 export interface Credentials {

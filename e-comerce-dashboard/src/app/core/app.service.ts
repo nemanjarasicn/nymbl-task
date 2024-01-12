@@ -14,9 +14,9 @@ class AppService {
     return httpClient.get<CustomerFeedback>("customer/feedback");
   }
 
-  getProductsAllPage(page: number, pageSize: number) {
+  getProductsAllPage(page: number, pageSize: number, userId: number) {
     return httpClient.get<Products>(
-      `products?page=${page}&pageSize=${pageSize}`
+      `products?page=${page}&pageSize=${pageSize}&userId=${userId}`
     );
   }
 }

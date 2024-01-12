@@ -7,4 +7,5 @@ export default interface Product extends RowDataPacket {
   price?: number;
   image?: string;
   quantity?: number;
+  user_id?: number;
 }

@@ -1,9 +1,10 @@
 import React from "react";
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from "recharts";
 
-import { selectOrdersAll } from "../../core/core.selectors";
+import { selectOrdersAll, selectUser } from "../../core/core.selectors";
 import { useAppSelector } from "../../hooks";
 import { createDataPie } from "../../utils/utils";
+import { UserAuth } from "@e-comerce/app/core/core.models";
 
 // data
 import { dataPie, COLORS } from "../../datas/constants";
@@ -45,7 +46,8 @@ const renderCustomizedLabel = ({
 
 const PieComponent = () => {
   const orders = useAppSelector(selectOrdersAll);
-  const dataPieCalculated = createDataPie(dataPie, orders);
+  const user = useAppSelector(selectUser);
+  const dataPieCalculated = createDataPie(dataPie, orders, user as UserAuth);
 
   return (
     <ResponsiveContainer width="100%" height="100%">

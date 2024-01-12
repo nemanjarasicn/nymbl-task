@@ -7,12 +7,19 @@ export default class ProductsController {
     try {
       // Extract page and pageSize from request query
       const page = req.query.page ? parseInt(req.query.page as string) : 1;
+      const userId = req.query.userId
+        ? parseInt(req.query.userId as string)
+        : 1;
       const pageSize = req.query.pageSize
         ? parseInt(req.query.pageSize as string)
         : 20;
 
       // Call retrieveAll with the extracted parameters
-      const orders = await productsRepository.retrieveAll(page, pageSize);
+      const orders = await productsRepository.retrieveAll(
+        page,
+        pageSize,
+        userId
+      );
 
       res.status(200).send(orders);
     } catch (err) {
