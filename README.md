@@ -30,7 +30,7 @@ Follow the bellow steps to install the application:
 
 2. replace all template files with actual files
 
-   - find the `.env.dev` files in server folder, than you need and duplicate(!) them as `.env`
+   - find the `.env.dev` files in server folder and e-comerce folder, than you need and duplicate(!) them as `.env`
 
 3. configure the values
 
@@ -70,6 +70,6 @@ Node.js and npm: Ensure you have Node.js and npm (Node Package Manager) installe
 
 In order to test the application open a browser and enter the following link
 
-[Local Enfis](http://localhost:3000)
+[Local](http://localhost:3000)
 
 Please note, in order to run full tests you need the local db, api up and running, or you can use deployed DB as services.

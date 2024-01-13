@@ -5,7 +5,10 @@ interface ConfigType extends AxiosRequestConfig {
 }
 
 const AXIOS = axios.create({
-  baseURL: "http://localhost:8080/api/",
+  baseURL:
+    process.env.NODE_ENV === "production"
+      ? process.env.REACT_APP_API_ENDPOINT_PROD + "api/"
+      : process.env.REACT_APP_API_ENDPOINT_DEV + "api/",
   withCredentials: false,
 });
 
